@@ -11,13 +11,16 @@ public class PawnTest extends TestCase{
 	 * 4. 인수를 받지 않는다
 	 */
 	public void testCreate(){
+		final String BLACK = "black";
+		final String WHITE = "white";
+		
 		Pawn pawn = new Pawn();
 		
-		pawn.setColor("white");
-		assertEquals(pawn.getColor(), "white");
+		pawn.setColor(WHITE);
+		assertEquals(pawn.getColor(), WHITE);
 		
-		Pawn pawn2 = new Pawn("black");
-		assertEquals(pawn2.getColor(), "black");
+		Pawn pawn2 = new Pawn(BLACK);
+		assertEquals(pawn2.getColor(), BLACK);
 		
 	}
 }
