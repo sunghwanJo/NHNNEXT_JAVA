@@ -10,6 +10,7 @@ public class PawnTest extends TestCase{
 	 * 3. 메소드의 이름은 소문자 test로 시작
 	 * 4. 인수를 받지 않는다
 	 */
+
 	public void testCreate(){
 		Pawn pawn = new Pawn();
 		
