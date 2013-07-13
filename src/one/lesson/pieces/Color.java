@@ -1,4 +1,4 @@
-package one.lesson.chess;
+package one.lesson.pieces;
 
 public class Color {
 	static final String BLACK="black";

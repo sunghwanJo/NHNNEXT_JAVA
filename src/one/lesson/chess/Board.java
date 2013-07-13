@@ -2,6 +2,8 @@ package one.lesson.chess;
 
 import java.util.ArrayList;
 
+import one.lesson.pieces.Pawn;
+
 public class Board {
 	private java.util.ArrayList<Pawn> units= new ArrayList<Pawn>();
 	

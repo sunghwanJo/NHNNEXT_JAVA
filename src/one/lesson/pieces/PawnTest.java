@@ -1,5 +1,6 @@
-package one.lesson.chess;
+package one.lesson.pieces;
 
+import one.lesson.chess.Board;
 import junit.framework.TestCase;
 
 public class PawnTest extends TestCase{
@@ -34,5 +35,7 @@ public class PawnTest extends TestCase{
 		board.enroll(whitePawn);
 		assertEquals(board.getUnitNumbers(), 2);
 		assertEquals(board.getUnit(1).getColor(), Color.WHITE);
+		
+		board.enroll(new Integer("7"));
 	}
 }
