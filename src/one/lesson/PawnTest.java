@@ -28,8 +28,10 @@ public class PawnTest extends TestCase{
 		
 		board.enroll(blackPawn);
 		assertEquals(board.getUnitNumbers(), 1);
+		assertEquals(board.getUnit(0).getColor(), Color.BLACK);
 		
 		board.enroll(whitePawn);
-		assertEquals(board.getUnitNumbers(), 2);		
+		assertEquals(board.getUnitNumbers(), 2);
+		assertEquals(board.getUnit(1).getColor(), Color.WHITE);
 	}
 }
