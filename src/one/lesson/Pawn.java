@@ -3,7 +3,9 @@ package one.lesson;
 public class Pawn {
 	private String color;
 	
-	Pawn(){}
+	Pawn(){
+		this.color = Color.WHITE;
+	}
 	Pawn(String color){
 		this.color =color;
 	}

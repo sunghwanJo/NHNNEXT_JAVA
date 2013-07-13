@@ -26,5 +26,6 @@ public class PawnTest extends TestCase{
 	
 	public void testBoard(){
 		Board board = new Board();
+
 	}
 }
