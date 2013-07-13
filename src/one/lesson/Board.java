@@ -10,5 +10,15 @@ public class Board {
 		// TODO Auto-generated method stub
 		units.add(pawn);
 	}
+
+
+	public int getUnitNumbers() {
+		// TODO Auto-generated method stub
+		return units.size();
+	}
+	
+	public Pawn getUnit(int index){
+		return units.get(index);
+	}
 	
 }
