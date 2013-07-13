@@ -2,10 +2,10 @@ package one.lesson;
 
 public class Pawn {
 	private String color;
-
+	
 	Pawn(){}
 	Pawn(String color){
-		this.color = color;
+		this.color =color;
 	}
 	
 	public String getColor() {

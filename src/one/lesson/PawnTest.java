@@ -23,4 +23,8 @@ public class PawnTest extends TestCase{
 		assertEquals(pawn2.getColor(), BLACK);
 		
 	}
+	
+	public void testBoard(){
+		Board board = new Board();
+	}
 }
