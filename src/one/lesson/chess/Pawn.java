@@ -1,4 +1,4 @@
-package one.lesson;
+package one.lesson.chess;
 
 public class Pawn {
 	private String color;

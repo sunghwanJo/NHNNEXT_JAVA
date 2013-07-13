@@ -1,4 +1,4 @@
-package one.lesson;
+package one.lesson.chess;
 
 import junit.framework.TestCase;
 

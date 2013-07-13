@@ -1,9 +1,9 @@
-package one.lesson;
+package one.lesson.chess;
 
 import java.util.ArrayList;
 
 public class Board {
-	private ArrayList<Pawn> units= new ArrayList<Pawn>();
+	private java.util.ArrayList<Pawn> units= new ArrayList<Pawn>();
 	
 	/**
 	 * 체스판에 말을 추가한
