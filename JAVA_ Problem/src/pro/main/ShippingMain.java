@@ -1,6 +1,7 @@
 package pro.main;
 
 import pro.company.Company;
+import pro.report.FuelNeedsReport;
 import pro.vehicle.RiverBarge;
 import pro.vehicle.Truck;
 

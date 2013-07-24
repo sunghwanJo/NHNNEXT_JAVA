@@ -2,11 +2,10 @@ package pro.company;
 
 import java.util.ArrayList;
 
-import pro.vehicle.Truck;
 import pro.vehicle.Vehicle;
 
 public class Company {
-	ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
+	public ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
 	
 	// Singleton Pattern을 위한 변수 
 	private static Company instance;
@@ -23,5 +22,6 @@ public class Company {
 	public void addVehicle(Vehicle vehicle) {
 		vehicles.add(vehicle);
 	}
+	
 
 }
