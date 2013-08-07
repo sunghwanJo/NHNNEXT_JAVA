@@ -6,6 +6,7 @@ public class Pawn {
 	
 	public static final String BLACK="black";
 	public static final String WHITE="white";
+	public static final String BLANK="blank";
 	/**
 	 * @author josunghwan
 	 */
@@ -20,7 +21,9 @@ public class Pawn {
 	 */
 	public Pawn(String color){
 		this.color =color;
-		if(color == Pawn.BLACK){
+		if(color == Pawn.BLANK){
+			this.printedChar = '.';
+		}else if(color == Pawn.BLACK){
 			this.printedChar = 'P';
 		}else{
 			this.printedChar = 'p';

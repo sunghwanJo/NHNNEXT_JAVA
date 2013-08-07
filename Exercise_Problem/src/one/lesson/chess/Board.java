@@ -5,28 +5,62 @@ import java.util.ArrayList;
 import one.lesson.pieces.Pawn;
 
 public class Board {
-	private ArrayList<Pawn> units= new ArrayList<Pawn>();
+	public ArrayList<Pawn>[] horseLists= new ArrayList[8];
+	public ArrayList<Pawn> units= new ArrayList<Pawn>();
+	public StringBuilder boardShape = new StringBuilder();
+	static Pawn blackPawn = new Pawn();
+	
 	
 	public Board(){
 		
 	}
-
-	public void initialize(){
-		ArrayList<ArrayList<Pawn>> list = new ArrayList<ArrayList<Pawn>>(); 
+	
+	public Board createBoard(){
+		Board board = new Board();
 		
-		ArrayList<Pawn> whiteList = new ArrayList<Pawn>();
-		ArrayList<Pawn> blackList = new ArrayList<Pawn>();
+		board.initialize();
+		
+		return board;
+	}
+	
+	public void initialize(){
+		for(int i=0; i<horseLists.length; i++){
+			horseLists[i] = new ArrayList<Pawn>();
+		}
 		
 		for(int i=0; i<8; i++){
-			whiteList.add(new Pawn(Pawn.WHITE));
-			blackList.add(new Pawn(Pawn.BLACK));	
-		}		
+			
+			if(i==1){
+				Pawn pawn=new Pawn(Pawn.WHITE);
+				
+				for(int j=0; j<8; j++){
+					horseLists[i].add(pawn);
+					this.enroll(pawn);
+				}
+			}else if(i ==6 ){
+				Pawn pawn=new Pawn(Pawn.BLACK);
+				for(int j=0; j<8; j++){
+					horseLists[i].add(pawn);
+					this.enroll(pawn);
+				}
+			}else{
+				for(int j=0; j<8; j++){
+					horseLists[i].add(new Pawn(Pawn.BLANK));
+				}
+			}
+		}
+	}
+	
+	public void printBoard(){
+		boardShape.replace(0, boardShape.toString().length(), "");
+		for(int i=0; i<8; i++){
+			for(Pawn pawn : horseLists[i]){
+				boardShape.append(pawn.printedChar);
+			}
+			boardShape.append('\n');
+		}
 		
-		list.add(whiteList);
-		list.add(blackList);
-		
-
-		
+		System.out.println(boardShape.toString());
 	}
 	
 	/**
@@ -45,7 +79,17 @@ public class Board {
 	 * @return 체스판 위에 있는 말의 수
 	 */
 	public int getUnitNumbers() {
-		// TODO Auto-generated method stub
+		/*
+		int num=0;
+		
+		for(int i=0; i<8; i++){
+			for(Pawn horse : horseLists[i]){
+				if(horse.getColor() != Pawn.BLANK){
+					num++;
+				}
+			}
+		}*/
+		
 		return units.size();
 	}
 	

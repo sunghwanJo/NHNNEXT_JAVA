@@ -1,7 +1,6 @@
 package one.lesson.test;
 
 import junit.framework.TestSuite;
-import one.lesson.pieces.PawnTest;
 
 
 public class AllTests{
