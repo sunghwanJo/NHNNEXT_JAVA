@@ -13,30 +13,16 @@ public class BoardTest extends TestCase{
 	Piece whitePawn;
 	
 	public void setUp(){
-		board = new Board();
-
-		blackPawn = Piece.create(Piece.Color.BLACK, Character.toUpperCase(Piece.PAWN_REPRESENTATION), Piece.Type.PAWN);
-		whitePawn = Piece.create(Piece.Color.WHITE, Piece.PAWN_REPRESENTATION, Piece.Type.PAWN);
+		board = Board.createBoard();
+		board.initialize();
+		blackPawn = Piece.createBlack(Piece.Type.PAWN);
+		whitePawn = Piece.createWhite(Piece.Type.PAWN);
 	}
 	
 	public void testBoard(){
-
-		board.enroll(blackPawn);
-		assertEquals(board.getUnitNumbers(), 1);
-		assertEquals(board.getUnit(0), blackPawn);
-		
-		board.enroll(whitePawn);
-		assertEquals(board.getUnitNumbers(), 2);
-		assertEquals(board.getUnit(1), whitePawn);
-		
-		assertEquals(board.getUnit(0).getName(), 'P');
-		assertEquals(board.getUnit(1).getName(), 'p');
-		//board.enroll(new Integer("7"));
 	}
 	
-	public void testCreate(){
-		board.initialize();
-		
+	public void testCreate(){		
 		assertEquals(whitePawn.getColor(), Piece.Color.WHITE);	
 		assertEquals(blackPawn.getColor(), Piece.Color.BLACK);
 		
@@ -57,20 +43,13 @@ public class BoardTest extends TestCase{
 			buffer.append(pawn.getName());
 		}
 		assertEquals("PPPPPPPP", buffer.toString());
-
-		assertEquals(32, board.getUnitNumbers() );
-		String blankRank = StringUtil.appendNewLine("........");
-		assertEquals(StringUtil.appendNewLine("rnbqkbnr") +
-				StringUtil.appendNewLine("pppppppp") +
-				blankRank + blankRank + blankRank + blankRank +
-				StringUtil.appendNewLine("PPPPPPPP") +
-				StringUtil.appendNewLine("RNBQKBNR"),
-				board.printBoard());
+	
+		assertEquals(32, board.getPieceNumbers() );
 		
 	}
 
 	public void testBoardShape(){
-		board.initialize();
+		
 		System.out.print(board.printBoard());
 		String blankRank = StringUtil.appendNewLine("........");
 		System.out.println(StringUtil.appendNewLine("rnbqkbnr") +
@@ -78,5 +57,9 @@ public class BoardTest extends TestCase{
 				blankRank + blankRank + blankRank + blankRank +
 				StringUtil.appendNewLine("PPPPPPPP") +
 				StringUtil.appendNewLine("RNBQKBNR"));
+	}
+	
+	public void testCountPieceWithType(){
+		
 	}
 }

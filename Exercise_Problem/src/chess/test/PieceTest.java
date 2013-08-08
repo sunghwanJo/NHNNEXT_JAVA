@@ -6,17 +6,17 @@ import chess.pieces.Piece;
 public class PieceTest extends TestCase{
 	
 	public void testCreate(){
-		verifyCreation(Piece.createWhitePawn(), Piece.createBlackPawn(), Piece.Type.PAWN, 
+		verifyCreation(Piece.createWhite(Piece.Type.PAWN), Piece.createBlack(Piece.Type.PAWN), Piece.Type.PAWN, 
 				Piece.PAWN_REPRESENTATION);
-		verifyCreation(Piece.createWhiteRook(), Piece.createBlackRook(), Piece.Type.ROOK, 
+		verifyCreation(Piece.createWhite(Piece.Type.ROOK), Piece.createBlack(Piece.Type.ROOK), Piece.Type.ROOK, 
 				Piece.ROOK_REPRESENTATION);
-		verifyCreation(Piece.createWhiteKnight(), Piece.createBlackKnight(), Piece.Type.KNIGHT, 
+		verifyCreation(Piece.createWhite(Piece.Type.KNIGHT), Piece.createBlack(Piece.Type.KNIGHT), Piece.Type.KNIGHT, 
 				Piece.KNIGHT_REPRESENTATION);
-		verifyCreation(Piece.createWhiteBishop(), Piece.createBlackBishop(), Piece.Type.BISHOP, 
+		verifyCreation(Piece.createWhite(Piece.Type.BISHOP), Piece.createBlack(Piece.Type.BISHOP), Piece.Type.BISHOP, 
 				Piece.BISHOP_REPRESENTATION);
-		verifyCreation(Piece.createWhiteQueen(), Piece.createBlackQueen(), Piece.Type.QUEEN, 
+		verifyCreation(Piece.createWhite(Piece.Type.QUEEN), Piece.createBlack(Piece.Type.QUEEN), Piece.Type.QUEEN, 
 				Piece.QUEEN_REPRESENTATION);
-		verifyCreation(Piece.createWhiteKing(), Piece.createBlackKing(), Piece.Type.KING, 
+		verifyCreation(Piece.createWhite(Piece.Type.KING), Piece.createBlack(Piece.Type.KING), Piece.Type.KING, 
 				Piece.KING_REPRESENTATION);
 		Piece blank = Piece.noPiece();
 		assertEquals('.', blank.getRepresentation());

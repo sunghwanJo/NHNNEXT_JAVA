@@ -2,8 +2,6 @@ package chess.board;
 
 import java.util.ArrayList;
 
-import org.omg.CORBA.NO_PERMISSION;
-
 import chess.pieces.Piece;
 /**
  * 
@@ -12,16 +10,14 @@ import chess.pieces.Piece;
  */
 public class Board {
 	public ArrayList<Piece>[] horseLists= new ArrayList[8];
-	public ArrayList<Piece> units= new ArrayList<Piece>();
 	public StringBuilder boardShape = new StringBuilder();
 	
-	static Piece blankPiece = Piece.create(Piece.Color.BLANK, Piece.BLANK_REPRESENTATION, Piece.Type.NO_PIECE );	
+	static Piece blankPiece = Piece.noPiece();	
 	
-	public Board(){	}
+	private Board(){	}
 	
-	public Board createBoard(){
+	public static Board createBoard(){
 		Board board = new Board();
-		
 		board.initialize();
 		
 		return board;
@@ -40,25 +36,25 @@ public class Board {
 				for(Piece.Type type : SpecialPiece){
 					Piece piece = Piece.createWhite(type);
 					horseLists[i].add(piece);
-					this.enroll(piece);
+					
 				}
 			}else if(i==1){
 				Piece pawn=Piece.createWhite(Piece.Type.PAWN);	
 				for(int j=0; j<8; j++){
 					horseLists[i].add(pawn);
-					this.enroll(pawn);
+					
 				}
 			}else if(i == 6){
 				Piece pawn=Piece.createBlack(Piece.Type.PAWN);
 				for(int j=0; j<8; j++){
 					horseLists[i].add(pawn);
-					this.enroll(pawn);
+					
 				}
 			}else if(i == 7){
 				for(Piece.Type type : SpecialPiece){
 					Piece piece = Piece.createBlack(type);
 					horseLists[i].add(piece);
-					this.enroll(piece);
+					
 				}
 			}else{
 				for(int j=0; j<8; j++){
@@ -79,30 +75,17 @@ public class Board {
 		
 		return boardShape.toString();
 	}
-	
-	public void enroll(Piece pawn) {
-		units.add(pawn);
-	}
 
-
-	public int getUnitNumbers() {
-		/*
-		int num=0;
-		
+	public int getPieceNumbers() {
+		int sum=0;
 		for(int i=0; i<8; i++){
-			for(Pawn horse : horseLists[i]){
-				if(horse.getColor() != Pawn.BLANK){
-					num++;
-				}
+			for(int j=0; j<8; j++){
+				if(horseLists[i].get(j).getType() != Piece.Type.NO_PIECE)
+					sum++;
 			}
-		}*/
+		}
 		
-		return units.size();
+		return sum;
 	}
-	
-
-	public Piece getUnit(int index){
-		return units.get(index);
-	}
-	
+		
 }
