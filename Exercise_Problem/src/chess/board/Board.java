@@ -2,6 +2,8 @@ package chess.board;
 
 import java.util.ArrayList;
 
+import org.omg.CORBA.NO_PERMISSION;
+
 import chess.pieces.Piece;
 /**
  * 
@@ -13,7 +15,7 @@ public class Board {
 	public ArrayList<Piece> units= new ArrayList<Piece>();
 	public StringBuilder boardShape = new StringBuilder();
 	
-	static Piece blankPiece = Piece.create(Piece.BLANK, ".");	
+	static Piece blankPiece = Piece.create(Piece.Color.BLANK, Piece.BLANK_REPRESENTATION, Piece.Type.NO_PIECE );	
 	
 	public Board(){	}
 	
@@ -26,36 +28,37 @@ public class Board {
 	}
 	
 	public void initialize(){
+		Piece.Type SpecialPiece[] = {Piece.Type.ROOK, Piece.Type.KNIGHT, Piece.Type.BISHOP,
+				Piece.Type.QUEEN, Piece.Type.KING, Piece.Type.BISHOP, Piece.Type.KNIGHT, Piece.Type.ROOK}; 
+		
 		for(int i=0; i<horseLists.length; i++){
 			horseLists[i] = new ArrayList<Piece>();
 		}
 		
 		for(int i=0; i<8; i++){
 			if(i==0){
-				String WhiteSpecialPiece[] = {"r", "n", "b", "q", "k", "b", "n", "r"};
-				for(String name : WhiteSpecialPiece){
-					Piece pawn = Piece.create(Piece.WHITE, name);
-					horseLists[i].add(pawn);
-					this.enroll(pawn);
+				for(Piece.Type type : SpecialPiece){
+					Piece piece = Piece.createWhite(type);
+					horseLists[i].add(piece);
+					this.enroll(piece);
 				}
 			}else if(i==1){
-				Piece pawn=Piece.create(Piece.WHITE, "p");	
+				Piece pawn=Piece.createWhite(Piece.Type.PAWN);	
 				for(int j=0; j<8; j++){
 					horseLists[i].add(pawn);
 					this.enroll(pawn);
 				}
 			}else if(i == 6){
-				Piece pawn=Piece.create(Piece.BLACK, "P");
+				Piece pawn=Piece.createBlack(Piece.Type.PAWN);
 				for(int j=0; j<8; j++){
 					horseLists[i].add(pawn);
 					this.enroll(pawn);
 				}
 			}else if(i == 7){
-				String BlackSpecialPiece[] = {"R", "N", "B", "Q", "K", "B", "N", "R"};
-				for(String name : BlackSpecialPiece){
-					Piece pawn = Piece.create(Piece.WHITE, name);
-					horseLists[i].add(pawn);
-					this.enroll(pawn);
+				for(Piece.Type type : SpecialPiece){
+					Piece piece = Piece.createBlack(type);
+					horseLists[i].add(piece);
+					this.enroll(piece);
 				}
 			}else{
 				for(int j=0; j<8; j++){
