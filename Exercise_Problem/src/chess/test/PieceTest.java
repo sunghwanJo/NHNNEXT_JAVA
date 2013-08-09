@@ -4,9 +4,7 @@ import junit.framework.TestCase;
 import chess.pieces.Piece;
 
 public class PieceTest extends TestCase{
-	
-
-	
+		
 	public void setUp(){
 		
 	}

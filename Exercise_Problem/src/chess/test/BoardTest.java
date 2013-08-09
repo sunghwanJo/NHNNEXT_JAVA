@@ -91,7 +91,6 @@ public class BoardTest extends TestCase{
 	public void testSetPieceWithPosition(){
 		Board board2 = Board.createBoard();
 		
-		
 		board2.setPieceWithPosition(Piece.createWhite(Piece.Type.ROOK), "c5");
 		assertEquals(board2.getPieceWithPosition("c5").getRepresentation(), 'r');
 		
@@ -103,7 +102,18 @@ public class BoardTest extends TestCase{
 		
 		board2.setPieceWithPosition(Piece.createBlack(Piece.Type.KNIGHT), "h4");
 		assertEquals(board2.getPieceWithPosition("h4").getRepresentation(), 'N');
-		
+	}
 	
+	public void testGetPoint(){
+		
+				
+		assertEquals(board.getPointWithColor(Piece.Color.WHITE), 38.0);
+		assertEquals(board.getPointWithColor(Piece.Color.BLACK), 38.0);
+		
+		
+		//Pawn Test
+		board.setPieceWithPosition(Piece.createWhite(Piece.Type.PAWN), "c5");
+		assertEquals(board.getPointWithColor(Piece.Color.WHITE), 38.0);
+		
 	}
 }

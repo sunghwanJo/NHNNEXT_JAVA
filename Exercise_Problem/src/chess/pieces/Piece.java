@@ -1,4 +1,8 @@
 package chess.pieces;
+
+import java.util.EnumMap;
+import java.util.Map;
+
 /**
  * 
  * @author josunghwan
@@ -6,9 +10,10 @@ package chess.pieces;
  */
 public class Piece {
 
+	public static enum Color {WHITE, BLACK, BLANK};
+	public static enum Type {PAWN, ROOK, KNIGHT, BISHOP, QUEEN, KING, NO_PIECE};
 	
-	public enum Color {WHITE, BLACK, BLANK};
-	public enum Type {PAWN, ROOK, KNIGHT, BISHOP, QUEEN, KING, NO_PIECE};
+	private Map<Piece.Type, Double> pieceMap = null;
 	
 	private Color color;
 	private char representChar;
@@ -25,7 +30,6 @@ public class Piece {
 	static int numberOfWhitePieces=0;
 	static int numberOfBlackPieces=0;
 	
-	
 	private Piece(){
 		
 	}
@@ -34,6 +38,24 @@ public class Piece {
 		this.color =color;
 		this.representChar = representChar;
 		this.type = type;
+	}
+
+	private Map<Piece.Type, Double> getPieceMap(){
+		if(pieceMap == null)
+			loadPieceMap();
+		return pieceMap;
+		
+	}
+	
+	private void loadPieceMap(){
+		pieceMap = new EnumMap<Piece.Type, Double>(Piece.Type.class);
+		pieceMap.put(Type.PAWN, new Double(1.0));
+		pieceMap.put(Type.ROOK, new Double(5.0));
+		pieceMap.put(Type.KNIGHT, new Double(2.5));
+		pieceMap.put(Type.BISHOP, new Double(3.0));
+		pieceMap.put(Type.QUEEN, new Double(9.0));
+		pieceMap.put(Type.KING, new Double(100.0));
+		
 	}
 	
 	private static Piece create(Color color, char representChar, Type type){

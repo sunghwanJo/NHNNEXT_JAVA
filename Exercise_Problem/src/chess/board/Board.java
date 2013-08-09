@@ -14,7 +14,7 @@ public class Board {
 	
 	static Piece blankPiece = Piece.noPiece();	
 	
-	private Board(){	}
+	private Board(){}
 	
 	public static Board createBoard(){
 		Board board = new Board();
@@ -78,16 +78,23 @@ public class Board {
 	
 	public int getCountPieces(Piece.Color color, Piece.Type type){;
 		int count=0;
+		
+		for(int i=0; i<8; i++){
+			count += getCountPiecesWithCols(color, type, i);
+		}
+		return count;
+	}
+	
+	public int getCountPiecesWithCols(Piece.Color color, Piece.Type type, int col){
+		int count=0;
 		Piece piece;
 		
 		for(int i=0; i<8; i++){
-			for(int j=0; j<8; j++){
-				piece = horseLists[i].get(j);
-				if(piece.getType() == type && piece.getColor() == color)
-					count++;
+			piece = horseLists[i].get(col);
+			if(piece.getType() == type && piece.getColor() == color){
+				count++;
 			}
 		}
-		
 		return count;
 	}
 	
@@ -99,8 +106,41 @@ public class Board {
 					count++;
 			}
 		}
-		
 		return count;
+	}
+	
+	public double getPointWithColor(Piece.Color color){
+		double point=0;
+		Piece piece;
+	
+		for(int i=0; i<8; i++){
+			for(int j=0; j<8; j++){
+				piece = horseLists[i].get(j);
+				
+				if(piece.getColor() != color)
+					continue;
+				
+				switch(piece.getType()){
+					case NO_PIECE: point+= 0;break;
+					case PAWN: 
+						if(getCountPiecesWithCols(color, Piece.Type.PAWN, j) > 1)
+							point +=  0.5;
+						else
+							point +=  1;
+						break;
+					case ROOK: point +=  5;break;
+					case KNIGHT: point +=  2.5;break;
+					case BISHOP: point +=  3;break;
+					case QUEEN: point +=  9;break;
+					case KING: point +=  100;break;
+				}
+			}
+		}
+		
+		if(point < 100)
+			return -1;//lose game
+		point -= 100;
+		return point;
 	}
 
 	public Piece getPieceWithPosition(String string) {
