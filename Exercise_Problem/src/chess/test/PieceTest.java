@@ -5,6 +5,30 @@ import chess.pieces.Piece;
 
 public class PieceTest extends TestCase{
 	
+
+	
+	public void setUp(){
+		
+	}
+	/**
+	 * isWhite(), isBlack() 테스트 함수
+	 */
+	public void testGetColor(){
+		Piece blackPawn;
+		Piece whitePawn;
+		
+		blackPawn = Piece.createBlack(Piece.Type.PAWN);
+		whitePawn = Piece.createWhite(Piece.Type.PAWN);
+		
+		assertEquals(whitePawn.getColor(), Piece.Color.WHITE);	
+		assertEquals(blackPawn.getColor(), Piece.Color.BLACK);
+		
+		assertTrue(whitePawn.isWhite());
+		assertTrue(blackPawn.isBlack());
+	}
+	/**
+	 * createWhite(Piece Type), createBlack(Piece Type) 테스트함 
+	 */
 	public void testCreate(){
 		verifyCreation(Piece.createWhite(Piece.Type.PAWN), Piece.createBlack(Piece.Type.PAWN), Piece.Type.PAWN, 
 				Piece.PAWN_REPRESENTATION);
@@ -23,6 +47,13 @@ public class PieceTest extends TestCase{
 		assertEquals(Piece.Type.NO_PIECE, blank.getType());
 	}
 	
+	/**
+	 * 
+	 * @param whitePiece White Piece
+	 * @param blackPiece Black Piece 
+	 * @param type Type of Piece
+	 * @param representation Represent Char of Piece
+	 */
 	private void verifyCreation(Piece whitePiece, Piece blackPiece, Piece.Type type, char representation){
 		assertTrue(whitePiece.isWhite());
 		assertEquals(type, whitePiece.getType());

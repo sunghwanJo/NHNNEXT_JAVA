@@ -26,7 +26,7 @@ public class Board {
 	public void initialize(){
 		Piece.Type SpecialPiece[] = {Piece.Type.ROOK, Piece.Type.KNIGHT, Piece.Type.BISHOP,
 				Piece.Type.QUEEN, Piece.Type.KING, Piece.Type.BISHOP, Piece.Type.KNIGHT, Piece.Type.ROOK}; 
-		
+
 		for(int i=0; i<horseLists.length; i++){
 			horseLists[i] = new ArrayList<Piece>();
 		}
@@ -68,24 +68,64 @@ public class Board {
 		boardShape.replace(0, boardShape.toString().length(), "");
 		for(int i=0; i<8; i++){
 			for(Piece pawn : horseLists[i]){
-				boardShape.append(pawn.getName());
+				boardShape.append(pawn.getRepresentation());
 			}
 			boardShape.append('\n');
 		}
 		
 		return boardShape.toString();
 	}
-
-	public int getPieceNumbers() {
-		int sum=0;
+	
+	public int getCountPieces(Piece.Color color, Piece.Type type){;
+		int count=0;
+		Piece piece;
+		
 		for(int i=0; i<8; i++){
 			for(int j=0; j<8; j++){
-				if(horseLists[i].get(j).getType() != Piece.Type.NO_PIECE)
-					sum++;
+				piece = horseLists[i].get(j);
+				if(piece.getType() == type && piece.getColor() == color)
+					count++;
 			}
 		}
 		
-		return sum;
+		return count;
 	}
+	
+	public int getPieceNumbers() {
+		int count=0;
+		for(int i=0; i<8; i++){
+			for(int j=0; j<8; j++){
+				if(horseLists[i].get(j).getType() != Piece.Type.NO_PIECE)
+					count++;
+			}
+		}
 		
+		return count;
+	}
+
+	public Piece getPieceWithPosition(String string) {
+		Piece piece;
+		int row, col;
+		
+		row = 8-Character.digit(string.charAt(1), 10);
+		col = convertCharToIntForChess(string.charAt(0));
+		
+		piece = horseLists[row].get(col);
+		
+		return piece;
+	}
+	
+	private int convertCharToIntForChess(char ch){;
+		return Character.getNumericValue(ch)-10;
+	}
+
+	public void setPieceWithPosition(Piece piece, String string) {
+		int row, col;
+		
+		col = convertCharToIntForChess(string.charAt(0));
+		row = 8-Character.digit(string.charAt(1), 10);	
+		
+		horseLists[row].remove(col);
+		horseLists[row].add(col, piece);
+	}
 }

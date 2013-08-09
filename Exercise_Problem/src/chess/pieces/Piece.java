@@ -11,7 +11,7 @@ public class Piece {
 	public enum Type {PAWN, ROOK, KNIGHT, BISHOP, QUEEN, KING, NO_PIECE};
 	
 	private Color color;
-	private char name;
+	private char representChar;
 	private Type type; 
 	
 	public static final char PAWN_REPRESENTATION = 'p';
@@ -30,24 +30,20 @@ public class Piece {
 		
 	}
 	
-	private Piece(Color color, char name, Type type){
+	private Piece(Color color, char representChar, Type type){
 		this.color =color;
-		this.name = name;
+		this.representChar = representChar;
 		this.type = type;
 	}
 	
-	private static Piece create(Color color, char name, Type type){
+	private static Piece create(Color color, char representChar, Type type){
 		if(color == Color.BLACK){
 			numberOfBlackPieces++;
 		}else if(color == Color.WHITE){
 			numberOfWhitePieces++;
 		}
 		
-		return new Piece(color, name, type);
-	}
-
-	public char getName() {
-		return name;
+		return new Piece(color, representChar, type);
 	}
 
 	public Color getColor() {
@@ -71,7 +67,7 @@ public class Piece {
 	}
 
 	public char getRepresentation() {
-		return this.name;
+		return this.representChar;
 	}
 
 	public Type getType() {
