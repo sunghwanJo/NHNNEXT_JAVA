@@ -32,10 +32,8 @@ public class Counselor implements Runnable {
 		int ticketing_time = customer.getTicket_time();
 		int arrival_time = customer.getArrival_time();
 		
-		System.out.println(ticketing_time*1000);
-		
 		customer.setTicket_waiting_time(Station.time - arrival_time);
-		Thread.sleep(ticketing_time * 1000);
+		Thread.sleep(ticketing_time * 10);
 		customer.setTicketing_time(Station.time);
 		
 		platform.enqueueCustomer(customer);

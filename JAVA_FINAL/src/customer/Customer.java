@@ -124,5 +124,6 @@ public class Customer {
 	public void setTrain_arrival_time(int train_arrival_time) {
 		this.train_arrival_time = train_arrival_time;
 	}
+	
 
 }

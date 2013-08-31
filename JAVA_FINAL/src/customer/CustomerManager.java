@@ -1,19 +1,25 @@
 package customer;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class CustomerManager {
 	private ArrayList<Customer> customer_list = new ArrayList<Customer>();
+	public ArrayList<Customer> customer_list_output;
 	private static CustomerManager instance;
+	private static String TAP="\t";
 	
 	private CustomerManager() throws IOException{
 		
 		File f = new File("customer_info.txt");
 		getCustomerWithFile(f);
+		
+		customer_list_output = (ArrayList<Customer>) customer_list.clone();
 		
 	}
 	
@@ -77,6 +83,26 @@ public class CustomerManager {
 		if(getSize() == 0)
 			return true;
 		return false;
+	}
+	
+	public void makeOutputFile() throws IOException{
+		FileWriter fr = new FileWriter("output.txt");
+		BufferedWriter outFile = new BufferedWriter(fr);
+		String out_string;
+		
+		for (Customer customer : customer_list_output) {
+			out_string = customer.id + TAP + customer.name + TAP+ customer.arrival_time
+					+ TAP+ customer.ticket_time + TAP+ customer.start_station
+					+ TAP+ customer.arrival_station + TAP+ customer.ticket_waiting_time
+					+ TAP+ customer.ticketing_time + TAP+ customer.train_waiting_time
+					+ TAP+ customer.train_start_time + TAP+ customer.train_arrival_time;
+			
+			System.out.println(out_string);
+			outFile.write(out_string);
+		}
+		
+				
+		
 	}
 	
 }
